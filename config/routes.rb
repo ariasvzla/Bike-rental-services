@@ -20,13 +20,13 @@ devise_for :users, controllers: {
     get '/summary' => 'bookings#summary'
   get '/stadistics' => 'profiles#stadistics'
 get '/profilepage' => 'profiles#userprofilepage'
-get '/home' => 'site#index'
+get '/home' => 'sites#index'
 get '/adminpage' => 'profiles#adminpage'
-get '/pricing' => 'site#pricing'
-get 'aboutus' => 'site#aboutus'
-get '/contact' => 'site#contactus'
+get '/pricing' => 'sites#pricing'
+get 'aboutus' => 'sites#aboutus'
+get '/contact' => 'sites#contactus'
 get '/bookingmanagment' => 'bookings#managment'
- root to: 'site#index'
+ root to: 'sites#index'
 
 
 end
