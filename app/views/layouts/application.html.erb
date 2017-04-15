@@ -41,8 +41,6 @@
      <% if user_signed_in? %>
           <% profile = Profile.find_by_user_id(current_user.id)%>
 
-         
-
     <% if current_user.admin?%>
                   <br><h4>Search Booking</h4> 
     <%= form_tag(adminpage_path, :method => "get", id: "search-form") do%> 
@@ -54,6 +52,7 @@
                <br><li><%= link_to('Profiles managment', profiles_path)%> </li>
                <br><li><%= link_to('Stadistics', stadistics_path)%> </li>
                 <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
+                <h4>Logged in as: Admin</h4>
 
     <%end%>
 
@@ -63,8 +62,10 @@
           <% if profile.nil?  %>
             
              <li><%= link_to('Create profile', new_profile_path(current_user.id)) %></li>
+             
 
              <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
+             <h4>Logged in as: <%= current_user.email%></h4>
 
            <%else%>
 
@@ -72,6 +73,7 @@
                <br><li><%= link_to('My Bookings', summary_path)%> </li>
                <br><li><%= link_to('Cancel Account', user_registration_path, :method => 'delete', data: { confirm: 'Are you sure?' })%> </li>
                 <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
+                <h4>Logged in as: <%= profile.firstname%></h4>
                 </ul>
                 <%end%>
         <%end%>
