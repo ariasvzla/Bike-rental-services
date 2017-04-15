@@ -1,0 +1,6 @@
+manager = User.new
+manager.email = "admin@admin.com"
+manager.password = "password"
+manager.password_confirmation = "password"
+manager.admin = "true"
+manager.save!
