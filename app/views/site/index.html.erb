@@ -1,7 +1,4 @@
 
- 
-   
-
 <% if user_signed_in? %>
 <div id="content">
      <table  width="670" border="0" span="16">
@@ -35,15 +32,11 @@
   </tbody>
   <%end%>
 </table>
-
+ <%end%>
 
    <% if current_user.admin? %>
 
      <h3>Hello Administrator  </h3>
-
-
-     <%end%>
-
 
 <%else%>
      <h3> You must be sign in to see the bikes available</h3>
