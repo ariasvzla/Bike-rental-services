@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bikeproject</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  
+<div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1>Bike Rental Services</h1>
+          <h2>ride dont drive!</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="/home">Home</a></li>
+        
+          <li><a href="page.html">How it works</a></li>
+          <li><a href="another_page.html">About us</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+         <div id="site_content">
+    <div class="sidebar">
+    <ul >
+        <!-- insert your sidebar items here -->
+       <h3>Menu</h3>
+
+     <% if user_signed_in? %>
+          <% profile = Profile.find_by_user_id(current_user.id)%>
+
+         
+
+    <% if current_user.admin?%>
+                  <br><h4>Search Booking</h4> 
+    <%= form_tag(adminpage_path, :method => "get", id: "search-form") do%> 
+    <%= text_field_tag :search, params[:search], placeholder: "Search Booking by email" %>
+    <% submit_tag "Search" %>
+                   <br><br><li><%= link_to('Bikes managment', bikes_path)%> </li>
+           
+                <br><li><%= link_to('Bookings details',adminpage_path)%> </li>
+               <br><li><%= link_to('Profiles managment', profiles_path)%> </li>
+               <br><li><%= link_to('Stadistics', stadistics_path)%> </li>
+                <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
+
+    <%end%>
+
+
+          <%else%>
+
+          <% if profile.nil?  %>
+            
+             <li><%= link_to('Create profile', new_profile_path(current_user.id)) %></li>
+
+             <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
+
+           <%else%>
+
+            <br><li><%= link_to('My profile', edit_profile_path(profile))%> </li>
+               <br><li><%= link_to('My Bookings', summary_path)%> </li>
+               <br><li><%= link_to('Cancel Account', user_registration_path, :method => 'delete', data: { confirm: 'Are you sure?' })%> </li>
+                <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
+                </ul>
+                <%end%>
+        <%end%>
+
+            
+      <%else%>
+      <li><%= link_to 'Log in', new_user_session_path %></li>
+          <li><%=link_to 'Create an Account', new_user_registration_path%></li>
+           
+          
+          
+
+  
+  <%end%>
+
+     
+      
+        <br><h5> <%= notice %> </h5>
+       <h5> <%= alert %></h5>
+   
+</div>
+
+
+       <%= yield %>
+        
+      
+
+
+
+      
+    
+     
+ </div>
+
+ </div>
+
+   
+
+    <div id="content_footer"></div>
+    <div id="footer">
+      Copyright &copy; bike rental &amp; services | <a href="#">2017</a></a>
+    </div>
+ 
+  </div>
+
+
+  </body>
+
+</html>

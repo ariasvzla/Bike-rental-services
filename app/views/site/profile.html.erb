@@ -1,0 +1,39 @@
+
+
+<% if user_signed_in? %>
+  <% profile = Profile.find_by_user_id(current_user.id)%>
+ 
+   <h1>Welcome to your profile </h1>
+   <p>
+  <strong>Firstname:</strong>
+  <%= profile.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= profile.lastname %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= profile.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= profile.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= profile.user.email %>
+</p>
+     <%= link_to('Logout', destroy_user_session_path, :method  => 'delete') %>  
+  </li>       
+  </li>
+<% else %>
+  <li>
+
+  <%= link_to('Create a new profile', new_profile_path)  %>  
+  </li>
+<% end %>

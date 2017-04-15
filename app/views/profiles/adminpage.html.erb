@@ -1,0 +1,65 @@
+
+<% if current_user.admin?%>
+ <div id="content">
+<h1>Bookings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>Return</th>
+      <th>Booked by</th>
+      <th>Bike</th>
+       <th>Period</th>
+       <th>Addons</th>
+      <th>Total Paid</th>
+
+    
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <% for booking in @bookings %>
+      <tr>
+        
+        <td><%= booking.start.strftime("%B %d, %Y")%></td>
+        <td><%= booking.return.strftime("%B %d, %Y") %></td>
+         <% period=booking.return.day - booking.start.day + 1%>
+      <% for user in @users %>
+         <%if booking.user_id ==user.id %>
+        <td><%= user.email %></td>
+        <%end%>
+      <%end%>
+        <% for bike in @bikes %>
+         <%if booking.bike_id==bike.id%>
+        <td><%= bike.category %></td>
+      <% if period>1 %>
+          <td><%=period %> Days</td>
+          <%else%>
+          <td><%=period %> Day</td>
+          <%end%> 
+          <td><%= booking.addons%></td>
+        <td><%= booking.total%> €</td>
+
+
+
+        <%end%>
+        <%end%>
+     
+
+      </tr>
+      
+    <% end %>
+  
+
+  </tbody>
+</table>
+
+<br>
+
+
+<%else%>
+<h1>You do not have rights to see this page</h1>
+  <%end%>
+  </div>

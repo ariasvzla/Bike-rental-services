@@ -1,0 +1,56 @@
+
+ 
+   
+
+<% if user_signed_in? %>
+<div id="content">
+     <table  width="670" border="0" span="16">
+
+<% @bikes.each do |bike| %>
+
+  <thead>
+    <tr>
+      <th scope="col"><%=bike.category%></th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <tr>
+      <td ><%= link_to (image_tag bike.title, :style => "height:100px"), new_user_booking_path(current_user.id, bike.id)%></td>
+      <td ><%=bike.description%></td>
+        <td><%=bike.price%> €/day</td>
+
+        <td><% if bike.status == true%>
+          <Strong><%=bike.quantity%><Strong> Bikes Available
+          <br>
+          <%else%>
+          Unavailable
+          <%end%>
+        </td>
+    </tr>
+   
+  </tbody>
+  <%end%>
+</table>
+
+
+   <% if current_user.admin? %>
+
+     <h3>Hello Administrator  </h3>
+
+
+     <%end%>
+
+
+<%else%>
+     <h3> You must be sign in to see the bikes available</h3>
+
+</div>
+
+   <%end%>
+   
+    
+

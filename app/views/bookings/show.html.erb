@@ -1,0 +1,58 @@
+
+
+<h1>Checkout</h1>
+<h4>Thanks for booking, <%=@user.profile.firstname%></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>Return</th>
+      <th>Bike</th>
+       <th>Period</th>
+      <th>Total Paid</th>
+<th colspan="1"></th>
+    </tr>
+  </thead>
+   <tbody>
+ 
+   <tr>
+        
+        <td><%= @booking.start.strftime("%B %d, %Y")%></td>
+        <td><%= @booking.return.strftime("%B %d, %Y") %></td>
+        <td><%= @booking.bike.category %></td>
+        <%@period=@booking.return.day-@booking.start.day + 1%>
+          <% if @period>1 %>
+          <td><%=@period %> Days</td>
+          <%else%>
+          <td><%=@period %> Day</td>
+          <%end%> 
+        <td><%=@booking.total%> €</td>
+        <td><%@totalpay=@booking.total %></td>
+
+
+           </tr>
+             </tbody>
+</table>
+<%-# Code taken from Stripe limited company -%>
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: <%=@totalpay%> €</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Bike rental services"
+          data-amount=<%=@totalpay*100 %>
+          data-currency='eur'
+          data-locale="auto"></script>
+<% end %>
+
+<%= link_to 'Modify booking', edit_user_booking_path %> |
+Finalcst<%= @finalcost.to_i%>

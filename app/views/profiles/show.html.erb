@@ -1,0 +1,33 @@
+
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @profile.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @profile.lastname %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @profile.address %>
+</p>
+
+<p>
+  <strong>Phonenumber:</strong>
+  <%= @profile.phonenumber %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @profile.user.email %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> <% if current_user.admin?%>
+<%= link_to 'Back', profiles_path %>
+<%else%>
+<%= link_to 'Back', profilepage_path %>
+<%end%>
+

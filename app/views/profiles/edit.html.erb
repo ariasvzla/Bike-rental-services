@@ -1,0 +1,12 @@
+
+
+<h1><%=@profile.firstname%>'s profile</h1>
+
+<%= render 'form', profile: @profile %>
+
+<!--<%= link_to 'Show', @profile %> |
+<% if current_user.admin?%>
+<%= link_to 'Back admin', profiles_path %>
+<%else%>
+<%= link_to 'Back', profilepage_path %>
+<%end%>-->

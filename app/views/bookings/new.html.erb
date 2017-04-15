@@ -1,0 +1,20 @@
+
+
+        <!--><% profile = Profile.find_by_user_id(current_user.id)%>
+        <%if profile.nil? %>
+         <div id="content">
+		   <li>
+   	 	<h1>You must create a profile before to make a booking</h1>
+  		</li>
+  		</div>
+       <%else%><!-->
+    
+<h1>New Booking</h1>
+
+
+<%= render 'form', booking: (@booking) %>
+
+<%= link_to 'Back', user_bookings_path %>
+
+
+<!--><%end%><!-->

@@ -1,0 +1,60 @@
+ <% if user_signed_in? %>
+
+   
+<% if current_user.admin? %>
+
+
+ <div id="content">
+<%= form_for(bike) do |f| %>
+  <% if bike.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bike.errors.count, "error") %> prohibited this bike from being saved:</h2>
+
+      <ul>
+      <% bike.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active %>
+    <%= f.check_box :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  </div>
+<% end %>
+<%else%>
+
+<h1>You are not allowed to see this go back please</h1>
+<%end%>
+<%end%>

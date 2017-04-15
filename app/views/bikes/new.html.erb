@@ -1,0 +1,17 @@
+ <% if user_signed_in? %>
+
+   
+<% if current_user.admin? %>
+ <div id="content">
+<h1>New Bike</h1>
+
+<%= render 'form', bike: @bike %>
+
+h
+</div>
+<%else%>
+ <div id="content">
+<h1>You are not allowed to see this go back please</h1>
+</div>
+<%end%>
+<%end%>
