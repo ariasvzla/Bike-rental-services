@@ -24,12 +24,15 @@
  
 <%for bike in @bikes %>
     <div class="field">
-    <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %> <%= f.radio_button(:bike_id, bike.id) %></strong>
-    
-    
+    <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %> 
+    <%= f.radio_button(:bike_id, bike.id) %></strong>
   </div>
   <%end%>
   <strong>Extras :</strong>
+  <div class="field" >
+  <strong>None:</strong>
+  <%= f.radio_button :noaddons, true %>
+  </div>
   <div class="field" >
 <strong>Helmet:</strong>
 <%= check_box_tag 'bike[helmet]','Helmet'%>
@@ -47,10 +50,7 @@
     
     <%= f.hidden_field :addons  %>
   </div>
- <div class="field">
-    
-    <%= f.hidden_field :total  %>
-  </div>
+
 
   <div class="actions">
     <%= f.submit %>

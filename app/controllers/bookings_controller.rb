@@ -73,7 +73,7 @@ end
       @booking = Booking.new(booking_params)
 
       @booking = @user.bookings.build(params.require(:booking).permit!)
-      @booking=@user.bookings.build(params.require(:booking).permit(:start, :return, :addons, :total, :bike_id))
+      @booking=@user.bookings.build(params.require(:booking).permit(:start, :return, :addons, :noaddons, :total, :bike_id))
 
   if @booking.bike_id.nil? or @booking.bike.status== false
 
@@ -90,24 +90,24 @@ end
        @booking.bike.status= false
     end
 
-if @booking.addons==""
-  @booking.addons = "No addons added"
-else
+
 myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
      # add the extra features to the new bike
-
-if params[:bike][:helmet].to_s.length > 0 then
-myBike = HelmetDecorator.new(myBike)
-end
-if params[:bike][:ligths].to_s.length > 0 then
-myBike = LigthsDecorator.new(myBike)
-end
-if params[:bike][:basket].to_s.length > 0 then
-myBike = BasketDecorator.new(myBike)
-end
-@booking.total = myBike.cost
-@booking.addons = myBike.details
-end
+  if @booking.noaddons == true
+       @booking.addons = 'No addons added'
+  else
+      if params[:bike][:helmet].to_s.length > 0 then
+      myBike = HelmetDecorator.new(myBike)
+      end
+      if params[:bike][:ligths].to_s.length > 0 then
+      myBike = LigthsDecorator.new(myBike)
+      end
+      if params[:bike][:basket].to_s.length > 0 then
+      myBike = BasketDecorator.new(myBike)
+      end
+      @booking.total = myBike.cost
+      @booking.addons = myBike.details
+  end
 
      respond_to do |format|
       if @booking.save

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415142535) do
+ActiveRecord::Schema.define(version: 20170415215509) do
 
   create_table "bikes", force: :cascade do |t|
     t.string   "title"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170415142535) do
     t.integer  "bike_id"
     t.string   "addons"
     t.decimal  "total"
+    t.boolean  "noaddons"
     t.index ["bike_id"], name: "index_bookings_on_bike_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end

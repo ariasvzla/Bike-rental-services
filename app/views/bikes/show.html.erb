@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<h1><strong><%=@bike.category%> Bike</strong></h1>
 <p>
-  <strong>Title:</strong>
-  <%= @bike.title %>
+  <%= (image_tag @bike.title, :style => "height:100px") %>
 </p>
 
 <p>

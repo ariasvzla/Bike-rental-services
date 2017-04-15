@@ -23,7 +23,7 @@
   <tbody>
     <% @bikes.each do |bike| %>
       <tr>
-        <td><%= bike.title %></td>
+        <td><%= (image_tag bike.title, :style => "height:100px") %></td>
         <td><%= bike.description %></td>
         <td><%= bike.quantity %></td>
         <td><%= bike.price %></td>
