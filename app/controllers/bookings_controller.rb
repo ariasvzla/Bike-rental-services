@@ -83,16 +83,18 @@ end
      redirect_to new_user_booking_path(current_user.id), notice: 'Cannot complete booking wrong dates !'
   else
        @booking.bike.quantity+= -1
-      @period=@booking.return.day-@booking.start.day + 1
-      @booking.total = @period*@booking.bike.price
+       @period=@booking.return.day-@booking.start.day + 1
+       @booking.total = @period*@booking.bike.price
 
     if @booking.bike.quantity == 0
        @booking.bike.status= false
     end
 
-
-    myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
-     # add the extra features to the new car
+if @booking.addons==""
+  @booking.addons = "No addons added"
+else
+myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
+     # add the extra features to the new bike
 
 if params[:bike][:helmet].to_s.length > 0 then
 myBike = HelmetDecorator.new(myBike)
@@ -105,7 +107,7 @@ myBike = BasketDecorator.new(myBike)
 end
 @booking.total = myBike.cost
 @booking.addons = myBike.details
-
+end
 
      respond_to do |format|
       if @booking.save
