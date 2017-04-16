@@ -59,7 +59,7 @@ end # ends the CarDecorator class
 class HelmetDecorator < BikeDecorator
     def initialize(basic_bike)
         super(basic_bike)
-        @extra_cost = 5
+        @extra_cost = 0
          @addons = "Helmet"
     end
     
@@ -81,7 +81,7 @@ end # ends the ElectricWindowsDecorator class
 class BasketDecorator < BikeDecorator
     def initialize(basic_bike)
         super(basic_bike)
-        @extra_cost = 5
+        @extra_cost = 10
          @addons = "Basket"
     end
     

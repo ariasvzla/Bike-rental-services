@@ -93,9 +93,7 @@ end
 
 myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
      # add the extra features to the new bike
-  if   @booking.noaddons == true 
-       @booking.addons = 'No addons added'
-  else
+
       if params[:bike][:helmet].to_s.length > 0 then
       myBike = HelmetDecorator.new(myBike)
       end
@@ -107,7 +105,6 @@ myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bik
       end
       @booking.total = myBike.cost
       @booking.addons = myBike.details
-  end
 
      respond_to do |format|
       if @booking.save

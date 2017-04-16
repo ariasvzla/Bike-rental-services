@@ -12,7 +12,13 @@
     </div>
   <% end %>
 
-  <div class="field">
+  
+ 
+<%for bike in @bikes %>
+    <%if bike.status==false%>
+      <h4><%=bike.category%> bikes unavailable</h4>
+      <%else%>
+      <div class="field">
     <%= f.label :From %>
     <%= f.datetime_select :start, :discard_hour => true %>
   </div>
@@ -21,26 +27,16 @@
     <%= f.label :To %>
     <%= f.datetime_select :return, :discard_hour => true %>
   </div>
- 
-<%for bike in @bikes %>
-    <%if bike.status==false%>
-      
-      <%else%>
     <div class="field">
     <h4><%=bike.category%> Bike</h4>
     <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %>  
     <%= f.radio_button(:bike_id, bike.id) %></strong>
   </div>
-  <%end%>
-  <%end%>
-  <strong>Extras :</strong>
-  <div class="field" >
-  <strong>None:</strong>
-  <%= check_box_tag :noaddons,:true, checked: true %>
-  </div>
+
+<strong>Extras :</strong>
   <div class="field" >
 <strong>Helmet: Free </strong>
-<%= check_box_tag 'bike[helmet]','Helmet'%>
+<%= radio_button_tag 'bike[helmet]','Helmet', checked: true%>
 </div>
  <div class="field">
 <strong>Ligths:  5€ +</strong>
@@ -60,5 +56,10 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-   
+
 <%end%>
+
+  <%end%>
+
+  <%end%>
+  
