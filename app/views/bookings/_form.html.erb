@@ -23,10 +23,15 @@
   </div>
  
 <%for bike in @bikes %>
+    <%if bike.status==false%>
+      
+      <%else%>
     <div class="field">
-    <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %> 
+    <h4><%=bike.category%> Bike</h4>
+    <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %>  
     <%= f.radio_button(:bike_id, bike.id) %></strong>
   </div>
+  <%end%>
   <%end%>
   <strong>Extras :</strong>
   <div class="field" >
