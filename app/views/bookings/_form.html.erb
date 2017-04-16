@@ -36,18 +36,18 @@
   <strong>Extras :</strong>
   <div class="field" >
   <strong>None:</strong>
-  <%= f.radio_button :noaddons, true %>
+  <%= check_box_tag :noaddons,:true, checked: true %>
   </div>
   <div class="field" >
-<strong>Helmet:</strong>
+<strong>Helmet: Free </strong>
 <%= check_box_tag 'bike[helmet]','Helmet'%>
 </div>
  <div class="field">
-<strong>Ligths:</strong>
+<strong>Ligths:  5€ +</strong>
 <%= check_box_tag 'bike[ligths]','Ligths'%>
 </div>
  <div class="field">
-<strong>Basket:</strong>
+<strong>Basket: 10€ +</strong>
 <%= check_box_tag 'bike[basket]','Basket'%>
 </div>
     
@@ -60,5 +60,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-  
+   
 <%end%>

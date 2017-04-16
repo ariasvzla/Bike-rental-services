@@ -46,10 +46,10 @@
     <%= form_tag(adminpage_path, :method => "get", id: "search-form") do%> 
     <%= text_field_tag :search, params[:search], placeholder: "Search Booking by email" %>
     <% submit_tag "Search" %>
-                   <br><br><li><%= link_to('Bikes managment', bikes_path)%> </li>
+                   <br><br><li><%= link_to('Bikes management', bikes_path)%> </li>
            
                 <br><li><%= link_to('Bookings details',adminpage_path)%> </li>
-               <br><li><%= link_to('Profiles managment', profiles_path)%> </li>
+               <br><li><%= link_to('Profiles management', profiles_path)%> </li>
                <br><li><%= link_to('Stadistics', stadistics_path)%> </li>
                 <br><li><%= link_to('Logout', destroy_user_session_path, :method  => 'delete',  data: { confirm: 'Are you sure?' }) %> </li>
                 <h4>Logged in as: Admin</h4>

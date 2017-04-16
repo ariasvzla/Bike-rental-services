@@ -1,4 +1,4 @@
-# the concrete component we would like to decorate, a car in our example
+# the concrete component we would like to decorate, a bike
 class BasicBike
    def initialize(price, quantity, category)
         @price = price
