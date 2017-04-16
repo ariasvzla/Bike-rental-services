@@ -4,7 +4,7 @@ class BasicBike
         @price = price
         @quantity = quantity
         @category = category
-        @addons = 'Bike'
+        @addons = 'Addon for'
 
     end
     
@@ -16,7 +16,7 @@ class BasicBike
         return @quantity
     end
       def details
-        return  @addons + ": " + @category+ ": " + "#{@cost}"
+        return  @addons + ": " + @category + " Bike"
     end
     # a method which returns a string representation of the object of type BasicCar
 
