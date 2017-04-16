@@ -24,9 +24,9 @@
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li class="selected"><a href="/home">Home</a></li>
         
-          <li><a href="page.html">How it works</a></li>
-          <li><a href="another_page.html">About us</a></li>
-          <li><a href="contact.html">Contact us</a></li>
+          <li><%= link_to('How it works',howworks_path)%></li>
+          <li><%= link_to('About us',aboutus_path)%></li>
+          <li><%= link_to('Contact us',new_contact_path)%></li>
         </ul>
       </div>
     </div>
