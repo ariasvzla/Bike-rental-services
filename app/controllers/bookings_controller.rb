@@ -68,41 +68,49 @@ end
   # POST /bookings
   # POST /bookings.json
   def create
-    
+       #find the the current user id and is asociate with the booking table
       @user = User.find(params[:user_id])
+      #get the params to create a new booking
       @booking = Booking.new(booking_params)
-
+        #allow params to be save in table bookings and require all of them
       @booking = @user.bookings.build(params.require(:booking).permit!)
       @booking=@user.bookings.build(params.require(:booking).permit(:start, :return, :addons, :noaddons, :bike_id))
-
-  if @booking.bike_id.nil? or @booking.bike.status== false
-
+      # if bike_id is nil the app will redirect the user back to the booking page and display a messsage to the user "pick a bike available please"
+      if @booking.bike_id.nil? or @booking.bike.status== false
+      #redifect user to the new booking page
      redirect_to new_user_booking_path(current_user.id), notice: 'Pick a bike available please!' 
- else
+      else 
+        #otherwise evaluate if the dates are valid
   if @booking.start < Date.current or  @booking.return < @booking.start  
      redirect_to new_user_booking_path(current_user.id), notice: 'Cannot complete booking wrong dates !'
   else
+    #if dates are valid atribute quantity is update
        @booking.bike.quantity+= -1
+       #calculate the period of the booking to calculate the global amount
        @period = @booking.return.day-@booking.start.day + 1
-
+      #this code set a bike to false if the status value is false when the quantity is zero
     if @booking.bike.quantity == 0
+      #set value of status to false to make a bike unavailable
        @booking.bike.status= false
     end
-
-
-     myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
+ 
+       #send the value to the decorator create in the lib folder bike_decorator.rb 
+      myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
      # add the extra features to the new bike
-
+        #if the user pick a helmet as a extra the total amount is update adding the extracost of the global amount 
       if params[:bike][:helmet].to_s.length > 0 then
       myBike = HelmetDecorator.new(myBike)
       end
+      #if the user pick ligths mybike send values to get the extra cost of the addon
       if params[:bike][:ligths].to_s.length > 0 then
       myBike = LigthsDecorator.new(myBike)
       end
       if params[:bike][:basket].to_s.length > 0 then
       myBike = BasketDecorator.new(myBike)
       end
+      #update the total to pay by multiplying the cost of the bike by the period  of the booking
       @booking.total = myBike.cost * @period
+      #the addon atribute is update also with the extra featurees picked  by the user
       @booking.addons = myBike.details
 
      respond_to do |format|

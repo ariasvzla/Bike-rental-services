@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
     @profile.user_id = current_user.id
   end
-
+   # method to control the view for the user profile page
   def userprofilepage
  @profile = Profile.find_by_user_id(current_user.id)
 end
@@ -27,26 +27,19 @@ end
   def edit
   end
 
+ # method to control the view for the admin profile page
 def adminpage
 
   @bookings=Booking.all
   @bikes=Bike.all
   @profiles=Profile.all
   @users=User.all
+  #add search funtionality to the admin page only administrator can see this functionality
    if params[:search]
-      @bookings= Booking.search(params[:search]).order("created_at DESC") 
-    
-   
+   @bookings= Booking.search(params[:search]).order("created_at DESC") 
     end
- 
 end
-def stadistics
 
-  @bookings=Booking.all
-  @bikes=Bike.all
-  @profiles=Profile.all
-  @users=User.all
-  end
   # POST /profiles
   # POST /profiles.json
   def create
