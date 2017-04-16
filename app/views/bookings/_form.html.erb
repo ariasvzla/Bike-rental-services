@@ -16,9 +16,13 @@
  
 <%for bike in @bikes %>
     <%if bike.status==false%>
-      <h4><%=bike.category%> bikes unavailable</h4>
+      
       <%else%>
-      <div class="field">
+      
+<%end%>
+<%end%>
+<h1>New Booking</h1>
+<div class="field">
     <%= f.label :From %>
     <%= f.datetime_select :start, :discard_hour => true %>
   </div>
@@ -57,9 +61,4 @@
     <%= f.submit %>
   </div>
 
-<%end%>
-
   <%end%>
-
-  <%end%>
-  
