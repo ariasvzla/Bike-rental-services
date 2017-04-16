@@ -13,13 +13,7 @@
   <% end %>
 
   
- 
-<%for bike in @bikes %>
-    <%if bike.status==false%>
-      
-      <%else%>
-      <h1>New Booking</h1>
-<div class="field">
+ <div class="field">
     <%= f.label :From %>
     <%= f.datetime_select :start, :discard_hour => true %>
   </div>
@@ -28,11 +22,17 @@
     <%= f.label :To %>
     <%= f.datetime_select :return, :discard_hour => true %>
   </div>
-    <div class="field">
-    <h4><%=bike.category%> Bike</h4>
-    <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %>  
-    <%= f.radio_button(:bike_id, bike.id) %></strong>
-  </div>
+<%for bike in @bikes %>
+    <%if bike.status == false%>
+      
+      <%else%>
+       <div class="field">
+       <h4><%=bike.category%> Bike</h4>
+       <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %>  
+       <%= f.radio_button(:bike_id, bike.id) %></strong>
+       </div>
+  <%end%>
+<%end%>
 
 <strong>Extras :</strong>
   <div class="field" >
@@ -58,7 +58,4 @@
     <%= f.submit %>
   </div>
 <%end%>
-<%end%>
 
-
-  <%end%>
