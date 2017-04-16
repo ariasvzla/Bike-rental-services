@@ -13,16 +13,16 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :required => true%>
   </div>
 
   <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :required => true%>
   </div>
    <div class="field">
     <%= f.label :message %>
-    <%= f.text_area :message %>
+    <%= f.text_area :message, :required => true%>
   </div>
 
   <div class="actions">
