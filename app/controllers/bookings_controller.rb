@@ -40,7 +40,7 @@ class BookingsController < ApplicationController
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to paymentdone_path
+      redirect_to '/paymentdone'
   end
 
    
