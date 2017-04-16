@@ -22,7 +22,7 @@ devise_for :users, controllers: {
   get '/stadistics' => 'profiles#stadistics'
 get '/profilepage' => 'profiles#userprofilepage'
 get '/home' => 'sites#index'
-get '/adminpage' => 'profiles#adminpage'
+get '/bookings' => 'profiles#adminpage'
 get '/pricing' => 'sites#pricing'
 get 'aboutus' => 'sites#aboutus'
 get '/contact' => 'sites#contactus'

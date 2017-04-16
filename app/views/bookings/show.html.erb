@@ -1,5 +1,5 @@
 
-
+<%# this page will be displayed to the user when they complete a booking succesfully%>
 <h1>Checkout</h1>
 <h4>Thanks for booking, <%=@user.profile.firstname%></h4>
 <table>
@@ -16,18 +16,22 @@
    <tbody>
  
    <tr>
-        
+        <%# this will show the date of the booking shorter just month year and day will be displayed%>
         <td><%= @booking.start.strftime("%B %d, %Y")%></td>
         <td><%= @booking.return.strftime("%B %d, %Y") %></td>
+        <%# this will show the category of the bike%>
         <td><%= @booking.bike.category %></td>
+        <%# this will show the period of the booking%>
         <%@period=@booking.return.day-@booking.start.day + 1%>
 
-         
+         <%# the period if is greater than one will display Days %>
           <% if @period>1 %>
           <td><%=@period %> Days</td>
           <%else%>
+           <%# otherwise it will display Day in singular%>
           <td><%=@period %> Day</td>
           <%end%> 
+           <%# it will show the total to pay by the user including the extras %>
         <td><%=@booking.total%> €</td>
         <td><%@totalpay=@booking.total %></td>
 
@@ -35,7 +39,7 @@
            </tr>
              </tbody>
 </table>
-<%-# Code taken from Stripe limited company -%>
+<%-# Code taken from Stripe limited company it will show the form to pay by credit card -%>
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>

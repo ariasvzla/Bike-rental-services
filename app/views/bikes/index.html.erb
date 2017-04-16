@@ -1,7 +1,7 @@
- 
+<%# verify is the user is signed in %>
  <% if user_signed_in? %>
 
-   
+   <%# verify if the current user is an admin%>
 <% if current_user.admin? %>
 
  <div id="content">
@@ -21,6 +21,8 @@
   </thead>
 
   <tbody>
+  <%# transver the bike table in order to get their values and display them%>
+
     <% @bikes.each do |bike| %>
       <tr>
         <td><%= (image_tag bike.title, :style => "height:100px") %></td>
@@ -38,11 +40,12 @@
 </table>
 
 <br>
-
+<%# link send the user to the form of the bike to create a new bike%>
 <%= link_to 'New Bike', new_bike_path %>
 </div>
 <%else%>
 <div id="content">
+<%# this will show if tthe current user is not administrator%>
 <h1>You are not allowed to see this go back please</h1>
 </div>
 <%end%>

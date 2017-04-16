@@ -1,6 +1,7 @@
 <h1>Editing Bike</h1>
-
+<%# redirect the user to the form of the bike in order to ssave a new bike%>
 <%= render 'form', bike: @bike %>
-
+<%# line show redirect the user to see the bike in detail %>
 <%= link_to 'Show', @bike %> |
+<%# back link rediect the user to the index of the bike scafffold %>
 <%= link_to 'Back', bikes_path %>

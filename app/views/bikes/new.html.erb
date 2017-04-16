@@ -1,16 +1,18 @@
+ <%# verify  is the user is already signed in%>
  <% if user_signed_in? %>
 
-   
+   <%# verify if the current user is an adminiastrator%>
 <% if current_user.admin? %>
  <div id="content">
 <h1>New Bike</h1>
 
 <%= render 'form', bike: @bike %>
 
-h
+
 </div>
 <%else%>
  <div id="content">
+ <%# this will display if the current user is not an administrator%>
 <h1>You are not allowed to see this go back please</h1>
 </div>
 <%end%>

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%# this page has been replace by the adminpage%>
 <h1>Bookings</h1>
 
 <table>
@@ -12,6 +12,7 @@
   </thead>
 
   <tbody>
+  <%# transverse the booking table to display data stored in it%>
     <% for booking in @bookings %>
       <tr>
         <td><%= booking.start %></td>

@@ -22,21 +22,26 @@
     <%= f.label :To %>
     <%= f.datetime_select :return, :discard_hour => true %>
   </div>
+  <%# transverse the table bike to verify if a bike is in a false or tru status%>
 <%for bike in @bikes %>
+<%# if a bike has false status or unavailable is not display on the screen to be booked%>
     <%if bike.status == false%>
       
       <%else%>
+      <%# otherwise the bikes availables will be dispplay to the users%>
        <div class="field">
        <h4><%=bike.category%> Bike</h4>
+       <%# this add an image to the bike%>
        <strong><%= f.label :Bike, (image_tag bike.title, :style => "height:100px") %>  
        <%= f.radio_button(:bike_id, bike.id) %></strong>
        </div>
   <%end%>
 <%end%>
-
+<%# the following are extras that will be display to the user if the want to add an extra feature to thir bookings%>
 <strong>Extras :</strong>
   <div class="field" >
 <strong>Helmet: Free </strong>
+<%# the helmet check box tag is autocheck because is required%>
 <%= radio_button_tag 'bike[helmet]','Helmet', checked: true%>
 </div>
  <div class="field">
@@ -47,7 +52,7 @@
 <strong>Basket: 10€ +</strong>
 <%= check_box_tag 'bike[basket]','Basket'%>
 </div>
-    
+    <%# addons atribute is set to be hidden thus data from the extras will be stored in it.%>
   <div class="field">
     
     <%= f.hidden_field :addons  %>

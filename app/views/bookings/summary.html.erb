@@ -1,11 +1,15 @@
 
-
+v <%# thsi page will show to the users how many booking they has made in the past %>
+ <%# this will take the profile id of the current user%>
   <% profile = Profile.find_by_user_id(current_user.id)%>
+  <%# this will take the booking id related to the user currently logged%>
   <% booking = Booking.find_by_user_id(current_user.id)%>
 
   <div id="content">
 <h1>Summary</h1>
+<%# this will display the name of the user %>
 <h4>All booking till today made by, <%=profile.firstname%></h4>
+<%# a table is created and will display the data %>
 <table>
   <thead>
     <tr>
@@ -18,8 +22,9 @@
 <th colspan="1"></th>
     </tr>
   </thead>
-   <tr>
+   <tr><%# transverse the booking table to get the data  %>
    <% Booking.all.each do |booking|%>
+   
         <% if booking.user_id == current_user.id %>
         <td><%= booking.start.strftime("%B %d, %Y")%></td>
         <td><%= booking.return.strftime("%B %d, %Y") %></td>

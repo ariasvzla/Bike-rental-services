@@ -18,7 +18,7 @@ class BasicBike
       def details
         return  @addons + ": " + @category + " Bike"
     end
-    # a method which returns a string representation of the object of type BasicCar
+    # a method which returns a string representation of the object of type BasicBike
 
     
     # getter method
@@ -35,7 +35,7 @@ end # ends the BasicCar class
 # the base/super class decorator (i.e. no actual decoration yet), each concrete decorator (i.e. subclass) will add its own decoration
 class BikeDecorator < BasicBike
     def initialize(basic_bike)
-        #basic_car is a real car, i.e. the component we want to decorate
+        #basic_bike is a real bike, i.e. the component we want to decorate
         @basic_bike = basic_bike
         super(@basic_bike.cost, @basic_bike.quantity, @basic_bike.category)
         @extra_cost = 0
@@ -52,7 +52,7 @@ class BikeDecorator < BasicBike
         return  @addons + "   " +@basic_bike.details
     end
     
-end # ends the CarDecorator class
+end # ends the BikeDecorator class
 
 
 # a concrete decorator --  define an extra feature
@@ -63,7 +63,7 @@ class HelmetDecorator < BikeDecorator
          @addons = "Helmet"
     end
     
-end # ends the MirrorDecorator class
+end # ends the HelmetDecorator class
 
 
 # another concrete decorator -- define an extra feature
@@ -74,7 +74,7 @@ class LigthsDecorator < BikeDecorator
         @addons = "Ligths"
     end
     
-end # ends the ElectricWindowsDecorator class
+end # ends the LightsDecorator class
 
 
 # another concrete decorator -- define an extra feature
@@ -85,5 +85,5 @@ class BasketDecorator < BikeDecorator
          @addons = "Basket"
     end
     
-end # ends the ParkingSensorDecorator class
+end # ends the BasketDecorator class
 

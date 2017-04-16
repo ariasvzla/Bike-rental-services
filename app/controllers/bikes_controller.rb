@@ -1,5 +1,7 @@
 class BikesController < ApplicationController
+  #Verify is a user is logged in in the website
   before_filter :authenticate_user!
+  #set params for the bike controller before create a neew one
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
   
   
@@ -33,9 +35,11 @@ class BikesController < ApplicationController
   # POST /bikes
   # POST /bikes.json
   def create
+    #take values from set method to create a new bike
     @bike = Bike.new(bike_params)
 
     respond_to do |format|
+      #if everything went well new bik is saved and redirect to the bike path
       if @bike.save
         format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
         format.json { render :show, status: :created, location: @bike }

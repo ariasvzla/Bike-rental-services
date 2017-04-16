@@ -1,6 +1,7 @@
+<%# verify is the user is signed in %>
  <% if user_signed_in? %>
 
-   
+   <%# verify if the current user is an admin%>
 <% if current_user.admin? %>
 
 
@@ -53,8 +54,10 @@
   </div>
   </div>
 <% end %>
+<%# otherwise will show the follow line %>
 <%else%>
-
+<%# ythe folllowing line is display when the user is not admin%>
 <h1>You are not allowed to see this go back please</h1>
+
 <%end%>
 <%end%>
