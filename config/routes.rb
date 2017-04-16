@@ -16,7 +16,7 @@ devise_for :users, controllers: {
         resources :charges   
 # route for showing summary
 get '/summary' => 'bookings#summary'
-get '/paymentdone' => 'bookings#paymentdone'
+post '/paymentdone' => 'bookings#paymentdone'
 get '/stadistics' => 'profiles#stadistics'
 get '/profilepage' => 'profiles#userprofilepage'
 get '/home' => 'sites#index'
