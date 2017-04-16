@@ -21,6 +21,8 @@
         <td><%= @booking.return.strftime("%B %d, %Y") %></td>
         <td><%= @booking.bike.category %></td>
         <%@period=@booking.return.day-@booking.start.day + 1%>
+
+         
           <% if @period>1 %>
           <td><%=@period %> Days</td>
           <%else%>

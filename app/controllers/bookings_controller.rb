@@ -73,7 +73,7 @@ end
       @booking = Booking.new(booking_params)
 
       @booking = @user.bookings.build(params.require(:booking).permit!)
-      @booking=@user.bookings.build(params.require(:booking).permit(:start, :return, :addons, :noaddons, :total, :bike_id))
+      @booking=@user.bookings.build(params.require(:booking).permit(:start, :return, :addons, :noaddons, :bike_id))
 
   if @booking.bike_id.nil? or @booking.bike.status== false
 
@@ -83,15 +83,14 @@ end
      redirect_to new_user_booking_path(current_user.id), notice: 'Cannot complete booking wrong dates !'
   else
        @booking.bike.quantity+= -1
-       @period=@booking.return.day-@booking.start.day + 1
-       @booking.total = @period*@booking.bike.price
+       @period = @booking.return.day-@booking.start.day + 1
 
     if @booking.bike.quantity == 0
        @booking.bike.status= false
     end
 
 
-myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
+     myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bike.category)
      # add the extra features to the new bike
 
       if params[:bike][:helmet].to_s.length > 0 then
@@ -103,7 +102,7 @@ myBike = BasicBike.new(@booking.bike.price, @booking.bike.quantity, @booking.bik
       if params[:bike][:basket].to_s.length > 0 then
       myBike = BasketDecorator.new(myBike)
       end
-      @booking.total = myBike.cost
+      @booking.total = myBike.cost * @period
       @booking.addons = myBike.details
 
      respond_to do |format|

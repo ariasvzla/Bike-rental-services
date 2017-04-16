@@ -39,32 +39,6 @@
 
 <br>
 
-<h1>Users without Profile</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-   
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% for profile in @profiles %>
-      <tr>  <% for user in @users %>
-             <% if profile.user_id != user.id %>
-               <td><%= user.email %></td>
-              <%end%>
-            
-      </tr>
-     
-    <% end %>
-    <%end%>
-  </tbody>
-</table>
-
 <%else%>
 <h1>You do not have rights to see this page</h1>
   <%end%>
